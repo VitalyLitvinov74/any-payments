@@ -1,7 +1,7 @@
 <?php
 
 
-namespace paymentsmulti\library\resources\request;
+namespace payment_library\resources\request;
 
 class PspToServer
 {

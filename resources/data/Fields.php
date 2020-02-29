@@ -1,11 +1,7 @@
 <?php
 
 
-namespace paymentsmulti\library\resources\data;
-
-
-use constructor\Constructor;
-use yii\helpers\VarDumper;
+namespace payment_library\resources\data;
 
 /**
  * Если будет нужно обратное преобразование типов например из json в array - дописать вторичный конструктор.

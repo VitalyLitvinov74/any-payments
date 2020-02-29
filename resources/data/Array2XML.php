@@ -1,6 +1,6 @@
 <?php
 
-namespace paymentsmulti\library\resources\data;
+namespace payment_library\resources\data;
 
 use DOMDocument;
 use DOMImplementation;

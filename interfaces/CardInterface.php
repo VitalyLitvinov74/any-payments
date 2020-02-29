@@ -6,7 +6,7 @@
  * Time: 16:43
  */
 
-namespace paymentsmulti\library\interfaces;
+namespace payment_library\interfaces;
 
 /**
  * Этот интерфейс должен реализовать класс, который занимается исключительно обработкой и валидацией формы.

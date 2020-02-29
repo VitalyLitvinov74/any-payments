@@ -1,9 +1,9 @@
 <?php
 
 
-namespace paymentsmulti\library\resources\request;
+namespace payment_library\resources\request;
 
-use paymentsmulti\library\resources\data\DataInterface;
+use payment_library\resources\data\DataInterface;
 
 /**
  * Класс который отправляет запросы на сервер платежной системы.

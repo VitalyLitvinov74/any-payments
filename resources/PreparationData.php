@@ -1,7 +1,7 @@
 <?php
 
 
-namespace paymentsmulti\library\resources;
+namespace payment_library\resources;
 
 
 trait PreparationData

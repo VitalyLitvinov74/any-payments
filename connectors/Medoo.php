@@ -8,7 +8,7 @@
  * Released under the MIT license
  */
 
-namespace paymentsmulti\library\connectors;
+namespace payment_library\connectors;
 
 use PDO;
 use Exception;

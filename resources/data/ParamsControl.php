@@ -1,10 +1,9 @@
 <?php
 
 
-namespace paymentsmulti\library\resources\data;
+namespace payment_library\resources\data;
 
 
-use yii\helpers\VarDumper;
 
 class ParamsControl implements DataInterface
 {

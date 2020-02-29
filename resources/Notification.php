@@ -1,18 +1,17 @@
 <?php
 
 
-namespace paymentsmulti\library\resources;
+namespace payment_library\resources;
 
 
 use paymentsmulti\common\ExternalStaticData;
 use paymentsmulti\common\tables\PaymentsBilling;
-use paymentsmulti\library\connectors\Medoo;
-use paymentsmulti\library\interfaces\NotificationHandler;
-use paymentsmulti\library\interfaces\NotificationInterface;
-use paymentsmulti\library\interfaces\IPayment;
-use paymentsmulti\library\resources\request\PspToServer;
+use payment_library\connectors\Medoo;
+use payment_library\interfaces\NotificationHandler;
+use payment_library\interfaces\NotificationInterface;
+use payment_library\interfaces\IPayment;
+use payment_library\resources\request\PspToServer;
 use ReflectionClass;
-use yii\helpers\VarDumper;
 
 /**
  * @property NotificationInterface $psp
