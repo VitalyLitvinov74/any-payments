@@ -1,0 +1,21 @@
+{
+  "name": "vitaly/multi-payment-systems",
+  "type": "library",
+  "description": "Using this library you can connect any payment system",
+  "keywords": ["payment"],
+  "authors": [
+    {
+      "name": "Vitaly Litvinov",
+      "email": "cheltend@mail.ru",
+      "role": "Developer"
+    }
+  ],
+  "require": {
+    "php": ">=7.2"
+  },
+  "autoload": {
+    "psr-4": {
+      "library\\": "library"
+    }
+  }
+}

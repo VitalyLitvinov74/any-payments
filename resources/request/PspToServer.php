@@ -3,9 +3,6 @@
 
 namespace paymentsmulti\library\resources\request;
 
-
-use yii\helpers\VarDumper;
-
 class PspToServer
 {
     private $jsonBody;

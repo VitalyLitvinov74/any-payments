@@ -4,14 +4,13 @@
 namespace paymentsmulti\library\resources\request;
 
 /*
- * Данный класс преобразовывает данные в необходимый тип. работает в связке с OutputRequest
- * здесь реализуется паттерн "Адаптер"
+ * пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ. пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ OutputRequest
+ * пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ"
  * */
 
 use paymentsmulti\library\interfaces\DataPreparationInterface;
 use paymentsmulti\library\resources\fields\Fields;
 use paymentsmulti\library\resources\fields\Headers;
-use yii\helpers\VarDumper;
 
 class DataPreparation
 {
@@ -25,7 +24,7 @@ class DataPreparation
     }
 
     /*
-     * Возвращает преобразованные данные заголовков.
+     * пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
      * */
     public function headers(): DataPreparationInterface
     {
@@ -37,7 +36,7 @@ class DataPreparation
     }
 
     /*
-     * возвращает преобразованные данные полей
+     * пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
      * */
     public function fields(): DataPreparationInterface
     {
@@ -49,7 +48,7 @@ class DataPreparation
     }
 
     /*
-     * Проверяет являются ли поля или заголовки типом DataPreparationInterface
+     * пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ DataPreparationInterface
      * */
     private function not_verification($data): bool
     {
@@ -67,7 +66,7 @@ class DataPreparation
     }
 
     /*
-     * Преобразует заголовки к типу DataPreparationInterface
+     * пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ DataPreparationInterface
      * */
     private function headers_to_type($headers)
     {
@@ -79,7 +78,7 @@ class DataPreparation
     }
 
     /*
-     * Преобразует поля к типу DataPreparationInterface
+     * пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ DataPreparationInterface
      * */
     private function fields_to_type($fields)
     {

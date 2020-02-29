@@ -4,7 +4,6 @@
 namespace paymentsmulti\library\resources\request;
 
 use paymentsmulti\library\resources\data\DataInterface;
-use yii\helpers\VarDumper;
 
 /**
  * Класс который отправляет запросы на сервер платежной системы.
