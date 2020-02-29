@@ -1,7 +1,7 @@
 <?php
 
 
-namespace payment_library\interfaces;
+namespace AnyPayments\interfaces;
 
 
 interface NotificationHandler

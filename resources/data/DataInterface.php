@@ -1,7 +1,7 @@
 <?php
 
 
-namespace payment_library\resources\data;
+namespace AnyPayments\resources\data;
 
 
 interface DataInterface

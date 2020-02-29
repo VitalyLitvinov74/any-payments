@@ -1,16 +1,16 @@
 <?php
 
 
-namespace payment_library\resources;
+namespace AnyPayments\resources;
 
 
 use paymentsmulti\common\ExternalStaticData;
 use paymentsmulti\common\tables\PaymentsBilling;
-use payment_library\connectors\Medoo;
-use payment_library\interfaces\NotificationHandler;
-use payment_library\interfaces\NotificationInterface;
-use payment_library\interfaces\IPayment;
-use payment_library\resources\request\PspToServer;
+use AnyPayments\connectors\Medoo;
+use AnyPayments\interfaces\NotificationHandler;
+use AnyPayments\interfaces\NotificationInterface;
+use AnyPayments\interfaces\IPayment;
+use AnyPayments\resources\request\PspToServer;
 use ReflectionClass;
 
 /**

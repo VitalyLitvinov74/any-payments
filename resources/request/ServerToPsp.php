@@ -1,9 +1,9 @@
 <?php
 
 
-namespace payment_library\resources\request;
+namespace AnyPayments\resources\request;
 
-use payment_library\resources\data\DataInterface;
+use AnyPayments\resources\data\DataInterface;
 
 /**
  * Класс который отправляет запросы на сервер платежной системы.

@@ -1,7 +1,7 @@
 <?php
 
 
-namespace payment_library\interfaces;
+namespace AnyPayments\interfaces;
 
 /**
  * Классы реализующие этот интерфейс создают транзакцию и перенаправляют пользователя на страницу оплаты.

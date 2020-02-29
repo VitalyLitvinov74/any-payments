@@ -1,7 +1,7 @@
 <?php
 
 
-namespace payment_library\resources\request;
+namespace AnyPayments\resources\request;
 
 class PspToServer
 {

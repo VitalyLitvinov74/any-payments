@@ -1,16 +1,16 @@
 <?php
 
 
-namespace payment_library\resources\request;
+namespace AnyPayments\resources\request;
 
 /*
  * ������ ����� ��������������� ������ � ����������� ���. �������� � ������ � OutputRequest
  * ����� ����������� ������� "�������"
  * */
 
-use payment_library\interfaces\DataPreparationInterface;
-use payment_library\resources\fields\Fields;
-use payment_library\resources\fields\Headers;
+use AnyPayments\interfaces\DataPreparationInterface;
+use AnyPayments\resources\fields\Fields;
+use AnyPayments\resources\fields\Headers;
 
 class DataPreparation
 {

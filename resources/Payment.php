@@ -1,16 +1,16 @@
 <?php
 
 
-namespace payment_library\resources;
+namespace AnyPayments\resources;
 
 
-use payment_library\connectors\Medoo;
-use payment_library\interfaces\IAdapter;
-use payment_library\interfaces\ControlInterface;
-use payment_library\interfaces\IPayment;
-use payment_library\resources\data\Fields;
-use payment_library\resources\data\Headers;
-use payment_library\resources\request\ServerToPsp;
+use AnyPayments\connectors\Medoo;
+use AnyPayments\interfaces\IAdapter;
+use AnyPayments\interfaces\ControlInterface;
+use AnyPayments\interfaces\IPayment;
+use AnyPayments\resources\data\Fields;
+use AnyPayments\resources\data\Headers;
+use AnyPayments\resources\request\ServerToPsp;
 
 /**
  * @property IPayment $psp

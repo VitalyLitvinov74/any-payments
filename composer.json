@@ -1,5 +1,5 @@
 {
-  "name": "vitaly/multi-payment-systems",
+  "name": "vitaly/any-payments",
   "type": "library",
   "description": "Using this library you can connect any payment system",
   "keywords": ["payment"],
@@ -15,7 +15,7 @@
   },
   "autoload": {
     "psr-4": {
-      "payment_library\\": "payment_library"
+      "AnyPayments\\": "any-payments"
     }
   }
 }

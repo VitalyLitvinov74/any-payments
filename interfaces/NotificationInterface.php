@@ -1,9 +1,9 @@
 <?php
 
 
-namespace payment_library\interfaces;
+namespace AnyPayments\interfaces;
 
-use payment_library\resources\request\PspToServer;
+use AnyPayments\resources\request\PspToServer;
 
 /**Классы реализующие этот интерфейс обрабатывают ответ от psp который приходит на callback_url*/
 interface NotificationInterface
