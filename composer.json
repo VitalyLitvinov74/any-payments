@@ -15,7 +15,7 @@
   },
   "autoload": {
     "psr-4": {
-      "AnyPayments\\": "any-payments"
+      "AnyPayments\\": "multi-payment-systems"
     }
   }
 }
