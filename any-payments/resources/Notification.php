@@ -18,7 +18,6 @@ use ReflectionClass;
  * @property Medoo $medoo
  * @property string $answer
  * @property bool $has_error
- * @property PaymentsBilling $billing
  * @property PspToServer $request
  */
 class Notification implements NotificationHandler
@@ -40,12 +39,6 @@ class Notification implements NotificationHandler
         $this->log($this->headers(), $this->fields());
         $this->psp = $callback_psp;
         if ($callback_psp->transaction_id($this->fields())){
-            //если такой вообще нет - то движение по алгоритму дальше не пойдет.
-            $this->billing = PaymentsBilling::find()
-                ->where([
-                    'transaction_id'=>$callback_psp->transaction_id($this->fields())
-                ])
-                ->one();
             $this->enjoy();
         }
     }
@@ -60,8 +53,8 @@ class Notification implements NotificationHandler
         $fields = $this->fields;
         $headers = $this->headers;
         $psp = $this->psp;
-        if ($psp->validate_input_signature($this->headers(), $this->fields())) {
-            if ($psp->transaction_successful($this->fields()) and $this->updated_billing()) {
+        if ($psp->validate_input_signature($headers, $fields)) {
+            if ($psp->transaction_successful($fields) and $this->updated_billing()) {
                 $this->has_error = false;
             } else {
                 $this->has_error = true;

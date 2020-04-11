@@ -5,8 +5,6 @@ namespace AnyPayments\resources;
 
 
 use AnyPayments\connectors\Medoo;
-use AnyPayments\interfaces\IAdapter;
-use AnyPayments\interfaces\ControlInterface;
 use AnyPayments\interfaces\IPayment;
 use AnyPayments\resources\data\Fields;
 use AnyPayments\resources\data\Headers;
