@@ -10,7 +10,11 @@ class PspToServer
 
     function __construct()
     {
-        $this->jsonBody = file_get_contents('php://input');
+        if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+            $this->jsonBody = $_SERVER['QUERY_STRING'];
+        } else if ($_SERVER['REQUEST_METHOD'] == "POST") {
+            $this->jsonBody = file_get_contents('php://input');
+        }
     }
 
     public function response(): string

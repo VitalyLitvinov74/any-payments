@@ -13,7 +13,7 @@
   "require": {
     "php": ">=7.2",
     "ext-json": "*",
-    "codeception/codeception": "4.1.4"
+    "ext-curl": "*"
   },
   "autoload": {
     "psr-4": {
