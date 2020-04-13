@@ -45,6 +45,7 @@ class Medoo
 
     public function __construct()
     {
+
         $options = [
             'database_type' => 'mysql',
             'database_name' => BASE_TRADING['base'],
