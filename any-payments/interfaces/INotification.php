@@ -6,7 +6,7 @@ namespace AnyPayments\interfaces;
 use AnyPayments\resources\request\PspToServer;
 
 /**Классы реализующие этот интерфейс обрабатывают ответ от psp который приходит на callback_url*/
-interface NotificationInterface
+interface INotification
 {
     /**
      * @return array - Ответ, отправляемый psp, при успешной транзакции

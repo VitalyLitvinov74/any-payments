@@ -8,19 +8,19 @@ use paymentsmulti\common\ExternalStaticData;
 use paymentsmulti\common\tables\PaymentsBilling;
 use AnyPayments\connectors\Medoo;
 use AnyPayments\interfaces\NotificationHandler;
-use AnyPayments\interfaces\NotificationInterface;
+use AnyPayments\interfaces\INotification;
 use AnyPayments\interfaces\IPayment;
 use AnyPayments\resources\request\PspToServer;
 use ReflectionClass;
 
 /**
- * @property NotificationInterface $psp
+ * @property INotification $psp
  * @property Medoo $medoo
  * @property string $answer
  * @property bool $has_error
  * @property PspToServer $request
  */
-class Notification implements NotificationHandler
+class Notification
 {
     use PreparationData;
     private $fields;
@@ -32,7 +32,7 @@ class Notification implements NotificationHandler
     private $billing;
     private $request;
 
-    public function __construct(NotificationInterface $callback_psp)
+    public function __construct(INotification $callback_psp)
     {
         $this->request = new PspToServer();
         $this->medoo = new Medoo();

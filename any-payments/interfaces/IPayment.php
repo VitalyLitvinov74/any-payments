@@ -12,10 +12,9 @@ interface IPayment
     /**
      * Принимает на вход форму карты.
      * преобразует эти данные и передает в psp через библеотеку payments.
-     *
-     * @param CardInterface $card
+     * @param IBillingInfo $card
      */
-    public function __construct(CardInterface $card);
+    public function __construct(IBillingInfo $card);
 
     /**
      * тип данных в котором будут передаваться поля.
@@ -53,5 +52,5 @@ interface IPayment
     /**
      * Возвращает данные формы для записи в бд.
     */
-    public function card(): CardInterface;
+    public function billing_info(): IBillingInfo;
 }

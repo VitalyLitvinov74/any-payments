@@ -12,7 +12,7 @@ namespace AnyPayments\interfaces;
  * Этот интерфейс должен реализовать класс, который занимается исключительно обработкой и валидацией формы.
  * в данном случае это CardForm
 */
-interface CardInterface
+interface IBillingInfo
 {
     /** сумма которую нужно передать в psp в удобном для вас формате. */
     public function amount();
@@ -25,12 +25,6 @@ interface CardInterface
 
     /** срок действия карты*/
     public function date();
-
-    /** */
-    public function validate();
-
-    /** */
-    public function method();
 
     /** возвращает фамилию держателя карты*/
     public function lastName(): string;
