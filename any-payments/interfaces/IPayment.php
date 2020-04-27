@@ -1,7 +1,7 @@
 <?php
 
 
-namespace AnyPayments\interfaces;
+namespace paymentsmulti\library\interfaces;
 
 /**
  * Классы реализующие этот интерфейс создают транзакцию и перенаправляют пользователя на страницу оплаты.
@@ -12,9 +12,10 @@ interface IPayment
     /**
      * Принимает на вход форму карты.
      * преобразует эти данные и передает в psp через библеотеку payments.
-     * @param IBillingInfo $card
+     *
+     * @param CardInterface $card
      */
-    public function __construct(IBillingInfo $card);
+    public function __construct(CardInterface $card);
 
     /**
      * тип данных в котором будут передаваться поля.
@@ -52,5 +53,5 @@ interface IPayment
     /**
      * Возвращает данные формы для записи в бд.
     */
-    public function billing_info(): IBillingInfo;
+    public function card(): CardInterface;
 }

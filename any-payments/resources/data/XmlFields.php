@@ -1,10 +1,11 @@
 <?php
 
 
-namespace AnyPayments\resources\data;
+namespace paymentsmulti\library\resources\data;
 
 use RecursiveArrayIterator;
 use SimpleXMLElement;
+use yii\helpers\VarDumper;
 
 /**
  * @property array $fields - EXAMPLE:

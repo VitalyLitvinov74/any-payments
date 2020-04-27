@@ -1,14 +1,17 @@
 <?php
 
 
-namespace AnyPayments\resources;
+namespace paymentsmulti\library\resources;
 
 
-use AnyPayments\connectors\Medoo;
-use AnyPayments\interfaces\IPayment;
-use AnyPayments\resources\data\Fields;
-use AnyPayments\resources\data\Headers;
-use AnyPayments\resources\request\ServerToPsp;
+use paymentsmulti\library\connectors\Medoo;
+use paymentsmulti\library\interfaces\IAdapter;
+use paymentsmulti\library\interfaces\ControlInterface;
+use paymentsmulti\library\interfaces\IPayment;
+use paymentsmulti\library\resources\data\Fields;
+use paymentsmulti\library\resources\data\Headers;
+use paymentsmulti\library\resources\request\ServerToPsp;
+use yii\helpers\VarDumper;
 
 /**
  * @property IPayment $psp

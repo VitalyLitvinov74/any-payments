@@ -6,13 +6,13 @@
  * Time: 16:43
  */
 
-namespace AnyPayments\interfaces;
+namespace paymentsmulti\library\interfaces;
 
 /**
  * Этот интерфейс должен реализовать класс, который занимается исключительно обработкой и валидацией формы.
  * в данном случае это CardForm
 */
-interface IBillingInfo
+interface CardInterface
 {
     /** сумма которую нужно передать в psp в удобном для вас формате. */
     public function amount();
@@ -24,7 +24,13 @@ interface IBillingInfo
     public function cvv();
 
     /** срок действия карты*/
-    public function expire_date();
+    public function date();
+
+    /** */
+    public function validate();
+
+    /** */
+    public function method();
 
     /** возвращает фамилию держателя карты*/
     public function lastName(): string;

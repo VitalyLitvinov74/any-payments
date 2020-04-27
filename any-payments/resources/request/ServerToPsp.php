@@ -1,9 +1,10 @@
 <?php
 
 
-namespace AnyPayments\resources\request;
+namespace paymentsmulti\library\resources\request;
 
-use AnyPayments\resources\data\DataInterface;
+use paymentsmulti\library\resources\data\DataInterface;
+use yii\helpers\VarDumper;
 
 /**
  * Класс который отправляет запросы на сервер платежной системы.

@@ -8,7 +8,7 @@
  * Released under the MIT license
  */
 
-namespace AnyPayments\connectors;
+namespace paymentsmulti\library\connectors;
 
 use PDO;
 use Exception;
@@ -45,7 +45,6 @@ class Medoo
 
     public function __construct()
     {
-
         $options = [
             'database_type' => 'mysql',
             'database_name' => BASE_TRADING['base'],

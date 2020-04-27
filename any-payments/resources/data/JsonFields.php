@@ -1,7 +1,7 @@
 <?php
 
 
-namespace AnyPayments\resources\data;
+namespace paymentsmulti\library\resources\data;
 
 
 

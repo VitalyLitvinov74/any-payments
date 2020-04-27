@@ -15,6 +15,4 @@ interface IConfig
      * содержит ключи, для готовых подключений к платежным системам.
     */
     public function payment_system_keys(): array;
-
-
 }

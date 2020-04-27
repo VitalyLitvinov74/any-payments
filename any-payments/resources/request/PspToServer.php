@@ -1,7 +1,8 @@
 <?php
 
 
-namespace AnyPayments\resources\request;
+namespace paymentsmulti\library\resources\request;
+
 
 class PspToServer
 {
@@ -24,13 +25,14 @@ class PspToServer
 
     public function headers(): array
     {
-        if(!$this->headers or is_string($this->headers)){
+        if (!$this->headers or is_string($this->headers)) {
             return $this->get_all_headers();
         }
         return $this->headers;
     }
 
-    private function get_all_headers() {
+    private function get_all_headers()
+    {
         $headers = [];
         foreach ($_SERVER as $name => $value) {
             if (substr($name, 0, 5) == 'HTTP_') {

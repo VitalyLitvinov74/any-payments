@@ -1,26 +1,28 @@
 <?php
 
 
-namespace AnyPayments\resources;
+namespace paymentsmulti\library\resources;
 
 
 use paymentsmulti\common\ExternalStaticData;
 use paymentsmulti\common\tables\PaymentsBilling;
-use AnyPayments\connectors\Medoo;
-use AnyPayments\interfaces\NotificationHandler;
-use AnyPayments\interfaces\INotification;
-use AnyPayments\interfaces\IPayment;
-use AnyPayments\resources\request\PspToServer;
+use paymentsmulti\library\connectors\Medoo;
+use paymentsmulti\library\interfaces\NotificationHandler;
+use paymentsmulti\library\interfaces\NotificationInterface;
+use paymentsmulti\library\interfaces\IPayment;
+use paymentsmulti\library\resources\request\PspToServer;
 use ReflectionClass;
+use yii\helpers\VarDumper;
 
 /**
- * @property INotification $psp
+ * @property NotificationInterface $psp
  * @property Medoo $medoo
  * @property string $answer
  * @property bool $has_error
+ * @property PaymentsBilling $billing
  * @property PspToServer $request
  */
-class Notification
+class Notification implements NotificationHandler
 {
     use PreparationData;
     private $fields;
@@ -32,13 +34,19 @@ class Notification
     private $billing;
     private $request;
 
-    public function __construct(INotification $callback_psp)
+    public function __construct(NotificationInterface $callback_psp)
     {
         $this->request = new PspToServer();
         $this->medoo = new Medoo();
         $this->log($this->headers(), $this->fields());
         $this->psp = $callback_psp;
         if ($callback_psp->transaction_id($this->fields())){
+            //если такой вообще нет - то движение по алгоритму дальше не пойдет.
+            $this->billing = PaymentsBilling::find()
+                ->where([
+                    'transaction_id'=>$callback_psp->transaction_id($this->fields())
+                ])
+                ->one();
             $this->enjoy();
         }
     }
@@ -53,8 +61,8 @@ class Notification
         $fields = $this->fields;
         $headers = $this->headers;
         $psp = $this->psp;
-        if ($psp->validate_input_signature($headers, $fields)) {
-            if ($psp->transaction_successful($fields) and $this->updated_billing()) {
+        if ($psp->validate_input_signature($this->headers(), $this->fields())) {
+            if ($psp->transaction_successful($this->fields()) and $this->updated_billing()) {
                 $this->has_error = false;
             } else {
                 $this->has_error = true;
