@@ -42,11 +42,6 @@ class Notification implements NotificationHandler
         $this->psp = $callback_psp;
         if ($callback_psp->transaction_id($this->fields())){
             //если такой вообще нет - то движение по алгоритму дальше не пойдет.
-            $this->billing = PaymentsBilling::find()
-                ->where([
-                    'transaction_id'=>$callback_psp->transaction_id($this->fields())
-                ])
-                ->one();
             $this->enjoy();
         }
     }

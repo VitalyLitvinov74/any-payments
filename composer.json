@@ -16,11 +16,12 @@
     "ext-curl": "*",
     "ext-libxml": "*",
     "ext-simplexml": "*",
-    "hassankhan/config": "^2.1"
+    "ext-pdo": "*"
   },
   "autoload": {
     "psr-4": {
-      "AnyPayments\\": "any-payments"
+      "AnyPayments\\v3\\": "v3",
+      "AnyPayments\\v3\\examples\\": "examples"
     }
   }
 }
