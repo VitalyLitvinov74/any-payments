@@ -1,21 +1,21 @@
 <?php
 
 
-namespace AnyPayments\v2\psp;
+namespace AnyPayments\v3\psp;
 
-use AnyPayments\v2\interfaces\IHandler;
-use AnyPayments\v2\interfaces\INotification;
-use AnyPayments\v2\interfaces\IPayment;
-use AnyPayments\v2\psp\royalpay\RoyalPay;
-use AnyPayments\v2\psp\royalpay\RoyalPayNotification;
-use AnyPayments\v2\psp\royalpay\RoyalPayPayment;
+use AnyPayments\v3\interfaces\IHandlerPayment;
+use AnyPayments\v3\interfaces\INotification;
+use AnyPayments\v3\interfaces\IPayment;
+use AnyPayments\v3\psp\royalpay\RoyalPay;
+use AnyPayments\v3\psp\royalpay\RoyalPayNotification;
+use AnyPayments\v3\psp\royalpay\RoyalPayPayment;
 
 /**
  * this class is needed only for automatic detection of the payment system. those.
  * choosing a payment strategy.
  * @property string $payment_system_name
  * @property array $config;
- * @property IHandler $payment
+ * @property IHandlerPayment $payment
  */
 class PaymentStrategy
 {

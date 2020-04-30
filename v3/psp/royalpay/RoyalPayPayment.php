@@ -1,21 +1,28 @@
 <?php
 
 
-namespace AnyPayments\v2\psp\royalpay;
+namespace AnyPayments\v3\psp\royalpay;
 
 
-use AnyPayments\v2\interfaces\ICardForm;
-use AnyPayments\v2\interfaces\IPayment;
+use AnyPayments\v3\interfaces\ICardForm;
+use AnyPayments\v3\interfaces\IPayment;
 use paymentsmulti\library\interfaces\CardInterface;
-
+/**
+ * @property ICardForm $card
+*/
 class RoyalPayPayment implements IPayment
 {
+    private $card;
 
     /**
      * Принимает на вход форму карты.
      * преобразует эти данные и передает в psp через библеотеку payments.
      * @param ICardForm $card
-     */public function __construct(ICardForm $card) { }
+     */
+    public function __construct(ICardForm $card)
+    {
+        $this->card = $card;
+    }
 
     /**
      * тип данных в котором будут передаваться поля.
@@ -72,6 +79,6 @@ class RoyalPayPayment implements IPayment
      */
     public function card(): CardInterface
     {
-        // TODO: Implement card() method.
+        return $this->card;
     }
 }

@@ -1,7 +1,7 @@
 <?php
 
 
-namespace AnyPayments\v2\interfaces;
+namespace AnyPayments\v3\interfaces;
 
 
 interface INotification

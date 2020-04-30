@@ -21,7 +21,7 @@
   "autoload": {
     "psr-4": {
       "AnyPayments\\v3\\": "v3",
-      "AnyPayments\\v3\\examples\\": "examples"
+      "AnyPayments\\examples\\": "examples"
     }
   }
 }

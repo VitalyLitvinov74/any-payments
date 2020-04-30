@@ -1,7 +1,7 @@
 <?php
 
 
-namespace AnyPayments\v2\migrations;
+namespace AnyPayments\v3\migrations;
 
 
 class Migration

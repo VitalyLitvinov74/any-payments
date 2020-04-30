@@ -8,7 +8,7 @@
  * Released under the MIT license
  */
 
-namespace AnyPayments\v2\db;
+namespace AnyPayments\v3\db;
 
 use PDO;
 use Exception;
