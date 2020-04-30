@@ -7,6 +7,7 @@ namespace AnyPayments\v3\psp\royalpay;
 use AnyPayments\v3\interfaces\ICardForm;
 use AnyPayments\v3\interfaces\IHandlerNotification;
 use AnyPayments\v3\interfaces\IHandlerPayment;
+use AnyPayments\v3\interfaces\IHandlerPsp;
 use AnyPayments\v3\interfaces\IPayment;
 use AnyPayments\v3\interfaces\IRequestData;
 
@@ -14,7 +15,7 @@ use AnyPayments\v3\interfaces\IRequestData;
  * Parent class for  processor of a specific PSP
  * @property ICardForm $card
  */
-class RoyalPay implements IRequestData, IHandlerNotification, IHandlerPayment
+class RoyalPay implements IHandlerPsp
 {
     private $card;
 

@@ -3,7 +3,7 @@
 
 namespace paymentsmulti\library\resources\request;
 
-use paymentsmulti\library\resources\data\DataInterface;
+use AnyPayments\v3\data\DataInterface;
 use yii\helpers\VarDumper;
 
 /**
