@@ -16,7 +16,8 @@
     "ext-curl": "*",
     "ext-libxml": "*",
     "ext-simplexml": "*",
-    "ext-pdo": "*"
+    "ext-pdo": "*",
+    "ext-dom": "*"
   },
   "autoload": {
     "psr-4": {
