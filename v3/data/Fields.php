@@ -27,4 +27,8 @@ class Fields
     private function is_json(string $string):bool{
 
     }
+
+    private function is_url(string $string): bool{
+
+    }
 }
