@@ -15,9 +15,8 @@ class RoyalPayPayment extends AbstractCommandOfPayment
 {
     private $urls;
 
-    public function __construct(ICardForm $card, IUrl $url) {
-        parent::__construct($card);
-        $this->urls = $url;
+    public function __construct(ICardForm $card_form) {
+        parent::__construct($card_form);
     }
 
     /**

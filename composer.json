@@ -2,7 +2,7 @@
   "name": "vitaly/any-payments",
   "type": "library",
   "description": "Using this library you can connect any payment system",
-  "keywords": ["payment"],
+  "keywords": ["payment", "royalpay"],
   "authors": [
     {
       "name": "Vitaly Litvinov",

@@ -16,6 +16,4 @@ class PaymentOf implements IHandlerOfPayment
     public function __construct(IFromCommandOfPayment $psp) {
         $this->psp = $psp;
     }
-
-
 }
