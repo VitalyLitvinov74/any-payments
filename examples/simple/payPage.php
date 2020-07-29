@@ -12,7 +12,7 @@ use AnyPayments\v3\handlers\PaymentOf;
  * 1. скопируйте код ниже.
  * 2. заполните классы Urls, CardForm, Credential - в них нет ничего сложного.
  * 3. используйте.
-*/
+ */
 $config =
     [
         'db' => [
@@ -20,7 +20,16 @@ $config =
             'db_name' => '', //with db
             'username' => '', //with db
             'password' => '', //with db
-            'db_type' => 'mysql' //with db
+            'db_type' => 'mysql', //with db
+
+            'migration' => true,//Указывает на то, нужно ли автоматически создавать таблицы, необходимые для работы компонента.
+            /**
+             * !!!!!!!!
+             * таблицы создадутся автоматически, при первом запуске PaymentOf(),
+             * обязательно укажите префикс, или оставьте поле пустым, или не указывайте данное поле.
+             * !!!!!!!!
+             */
+            'prefix_any_payments' => "any_payments" //or ""
         ]
     ];
 $payment =
@@ -30,8 +39,8 @@ $payment =
                 $_POST
             ),
             new Credential([ //данные авторизации для роялпэй.
-                'secret_key'=>'your secret key',
-                'auth' => 'your auth key'
+                             'secret_key' => 'your secret key',
+                             'auth' => 'your auth key'
             ]),
             new Urls($_SERVER['REQUEST_URI']) //содержит информацию о том куда перенаправлять пользователя.
         ),
