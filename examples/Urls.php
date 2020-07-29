@@ -6,25 +6,38 @@ namespace AnyPayments\examples;
 
 use AnyPayments\v3\interfaces\IUrl;
 
+/**
+ * @property string $domain
+ */
 class Urls implements IUrl
 {
+    private $domain;
+
+    public function __construct(string $domain)
+    {
+        $this->domain = $domain;
+    }
+
     public function callback_url(array $params = []): string
     {
-        // TODO: Implement callback_url() method.
+        return $this->domain . '/examples/simple/notificationPage.php';
     }
 
     public function after_payment_url(array $params = []): string
     {
-        // TODO: Implement after_payment_url() method.
+        return $this->domain . '/examples/simple/successPage.php';
     }
 
     public function success_url(array $params = []): string
     {
-        // TODO: Implement success_url() method.
+        return $this->domain . '/examples/simple/successPage.php';
     }
 
     public function fail_url(array $params = []): string
     {
-        // TODO: Implement fail_url() method.
+        if (isset($params['message'])) {
+            return $this->domain . '/examples/simple/errorPage?message=' . $params['message'];
+        }
+        return $this->domain . '/examples/simple/errorPage';
     }
 }

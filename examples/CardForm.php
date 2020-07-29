@@ -115,6 +115,6 @@ class CardForm implements ICardForm
     /** возвращает имя текущей платежной системы*/
     public function scenario(): string
     {
-        return $this->post['scenario'];
+        return 'royalpay';
     }
 }

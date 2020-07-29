@@ -13,8 +13,8 @@ class Credential implements ICredential
 {
 
     private $secrets = [
-        'auth_key'=>'',
-        'public_key'=>'',
+        'auth_key'=>'your auth key',
+        'secret_key'=>'your secret key',
     ];
 
     public function __construct(array $array) {

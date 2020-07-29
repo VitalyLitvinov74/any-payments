@@ -4,10 +4,15 @@ use AnyPayemtns\v3\psp\royalpay\RoyalPayNotification;
 use AnyPayemtns\v3\psp\royalpay\RoyalPayPayment;
 use AnyPayments\examples\CardForm;
 use AnyPayments\examples\Credential;
-use AnyPayments\v3\Config;
+use AnyPayments\examples\Urls;
 use AnyPayments\v3\handlers\NotificationOf;
 use AnyPayments\v3\handlers\PaymentOf;
 
+/**
+ * 1. скопируйте код ниже.
+ * 2. заполните классы Urls, CardForm, Credential - в них нет ничего сложного.
+ * 3. используйте.
+*/
 $config =
     [
         'db' => [
@@ -16,12 +21,6 @@ $config =
             'username' => '', //with db
             'password' => '', //with db
             'db_type' => 'mysql' //with db
-        ],
-        'urls' => [ //or use IUrls
-            'callback_url' => '',//default
-            'after_payment_url' => '', //default
-            'fail_url' => '', //default
-            'success_url' => '', //default
         ]
     ];
 $payment =
@@ -30,19 +29,12 @@ $payment =
             new CardForm( //форма, обрабатывающая карту
                 $_POST
             ),
-            $credentials = new Credential([ //данные авторизации для роялпэй.
-                'secret_key'=>'',
-                'public_key' => ''
-            ])
+            new Credential([ //данные авторизации для роялпэй.
+                'secret_key'=>'your secret key',
+                'auth' => 'your auth key'
+            ]),
+            new Urls($_SERVER['REQUEST_URI']) //содержит информацию о том куда перенаправлять пользователя.
         ),
         $config['db']
     );
-
-
-$notification =
-    new NotificationOf(
-        new RoyalPayNotification(
-            $credentials
-        ),
-        $config['db']
-    );
+$payment->pay();
