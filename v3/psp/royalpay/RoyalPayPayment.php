@@ -6,17 +6,26 @@ namespace AnyPayemtns\v3\psp\royalpay;
 
 use AnyPayemtns\v3\psp\AbstractCommandOfPayment;
 use AnyPayments\v3\interfaces\ICardForm;
+use AnyPayments\v3\interfaces\IConfig;
+use AnyPayments\v3\interfaces\ICredential;
 use AnyPayments\v3\interfaces\IUrl;
 
 /**
  * @property IUrl $urls
+ * @property ICredential $secret_keys
 */
 class RoyalPayPayment extends AbstractCommandOfPayment
 {
     private $urls;
+    private $secret_keys;
 
-    public function __construct(ICardForm $card_form) {
+    /**
+     * @param ICardForm $card_form - форма которую отправляет пользователь
+     * @param ICredential $credential - данные авторизации для данной платежной системы.
+     */
+    public function __construct(ICardForm $card_form, ICredential $credential) {
         parent::__construct($card_form);
+        $this->secret_keys = $credential;
     }
 
     /**

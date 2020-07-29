@@ -5,10 +5,17 @@ namespace AnyPayemtns\v3\psp\royalpay;
 
 
 use AnyPayemtns\v3\psp\AbstractCommandOfNotification;
+use AnyPayments\v3\interfaces\ICredential;
 use AnyPayments\v3\interfaces\IFromCommandOfNotification;
 
 class RoyalPayNotification extends AbstractCommandOfNotification
 {
+    /**
+     * @param ICredential $credential - для проверки подписи со стороны платежной системы.
+     */
+    public function __construct(ICredential $credential) {
+
+    }
 
     /**
      * @return array - Ответ, отправляемый psp, при успешной транзакции
