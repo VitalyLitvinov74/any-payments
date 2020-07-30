@@ -19,36 +19,45 @@ abstract class AutoMigrate implements IMigration
     /**
      * проверяет существование необходимы таблиц.
      * @param string $prefix
-     * @param array $db - конфиг базы данных
+     * @param Medoo $db - конфиг базы данных
      */
-    public function __construct(string $prefix, array $db) {
+    public function __construct(string $prefix, Medoo $db) {
         $this->prefix = $prefix;
-        $this->db = new Medoo([
-                'database_type' => $db['db_type'],
-                'database_name' => $db['db_name'],
-                'server' => $db['db_host'],
-                'username' => $db['username'],
-                'password' => $db['password']
-            ]);
+        $this->db = $db;
     }
 
-    protected function create_table(string $db_name, string $table_name, array $tables){
-
+    protected function create_table(string $table_name, array $columns){
+        $this->db->create($table_name, $columns);
     }
 
-    protected function drop_table(){
-
+    protected function drop_table(string $table_name){
+        $this->db->drop($table_name);
     }
 
-    protected function primary_key(){
-
+    protected function primary_key(): array{
+        return [
+            "INT",
+            "NOT NULL",
+            "AUTO_INCREMENT",
+            "PRIMARY KEY"
+        ];
     }
 
-    protected function string(){
-
+    protected function string(int $length = 255): array{
+        return [
+            "VARCHAR(".$length.")"
+        ];
     }
 
-    protected function int(){
+    protected function int(): array{
+        return ["INT"];
+    }
 
+    protected function tiny_int(): array{
+        return ["tinyint(1)"];
+    }
+
+    protected function float(): array{
+        return ["FLOAT"];
     }
 }

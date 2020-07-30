@@ -16,20 +16,13 @@ use AnyPayments\v3\handlers\PaymentOf;
 $config =
     [
         'db' => [
-            'db_host' => '', //with db
-            'db_name' => '', //with db
-            'username' => '', //with db
-            'password' => '', //with db
-            'db_type' => 'mysql', //with db
-
-            'migration' => true,//Указывает на то, нужно ли автоматически создавать таблицы, необходимые для работы компонента.
-            /**
-             * !!!!!!!!
-             * таблицы создадутся автоматически, при первом запуске PaymentOf(),
-             * обязательно укажите префикс, или оставьте поле пустым, или не указывайте данное поле.
-             * !!!!!!!!
-             */
-            'prefix_any_payments' => "any_payments" //or ""
+            'db_host' => '', //require
+            'db_name' => '', //require
+            'username' => '', //require
+            'password' => '', //require
+            'db_type' => 'mysql', //require
+            'needle_auto_migration' => true,//default false
+            'prefix_any_payments' => "any_payments" //default any_payments
         ]
     ];
 $payment =
