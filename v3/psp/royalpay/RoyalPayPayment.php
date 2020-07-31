@@ -9,13 +9,14 @@ use AnyPayments\examples\Urls;
 use AnyPayments\v3\interfaces\ICardForm;
 use AnyPayments\v3\interfaces\IConfig;
 use AnyPayments\v3\interfaces\ICredential;
+use AnyPayments\v3\interfaces\IFromCommandOfPayment;
 use AnyPayments\v3\interfaces\IUrl;
 
 /**
  * @property IUrl $urls
  * @property ICredential $secret_keys
 */
-class RoyalPayPayment extends AbstractCommandOfPayment
+class RoyalPayPayment extends AbstractCommandOfPayment implements IFromCommandOfPayment
 {
     private $urls;
     private $secret_keys;

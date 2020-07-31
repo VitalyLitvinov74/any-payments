@@ -21,8 +21,6 @@ $config =
             'username' => '', //require
             'password' => '', //require
             'db_type' => 'mysql', //require
-            'needle_auto_migration' => true,//default false
-            'prefix_any_payments' => "any_payments" //default any_payments
         ]
     ];
 $payment =
