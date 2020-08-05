@@ -6,10 +6,13 @@ namespace AnyPayments\v3\handlers;
 
 use AnyPayments\v3\interfaces\IFromCommandOfPayment;
 use AnyPayments\v3\interfaces\IHandlerOfPayment;
+use AnyPayments\v3\interfaces\IStream;
+use AnyPayments\v3\io\BillingOf;
 use AnyPayments\v3\io\FieldsOf;
 use AnyPayments\v3\io\HeadersOf;
 use AnyPayments\v3\io\LogStream;
 use AnyPayments\v3\io\OutputStreamTo;
+use AnyPayments\v3\io\StreamOfDataFrom;
 use AnyPayments\v3\meedoo\Medoo;
 
 /**
@@ -30,6 +33,7 @@ use AnyPayments\v3\meedoo\Medoo;
  * @property HeadersOf $headers
  * @property OutputStreamTo $stream;
  * @property  LogStream $log
+ * @property IStream $stream_of_data
  */
 class PaymentOf implements IHandlerOfPayment
 {
@@ -39,8 +43,8 @@ class PaymentOf implements IHandlerOfPayment
     private $headers;
     private $fields;
     private $stream;
-    private $log_out;
-    private $log_input;
+    private $log;
+    private $stream_of_data;
 
     public function __construct(IFromCommandOfPayment $psp, array $db_connection)
     {
@@ -53,37 +57,23 @@ class PaymentOf implements IHandlerOfPayment
             'username' => $db_connection['username'],
             'password' => $db_connection['password']
         ]);
-        $this->stream = new OutputStreamTo($psp->api_url());
+        $this->stream = new OutputStreamTo($psp->api_url()); //поток входных данных.
         $this->fields = new FieldsOf($psp->fields());
         $this->headers = new HeadersOf($psp->headers());
-        $this->log_out = LogStream::Output(
-            $this->db,
-            $this->fields,
-            $this->headers
-        );
-        $this->log_input = LogStream::Input(
-            $this->db,
-            $this->stream
-        );
+        $this->log = new LogStream($this->db);
+        $this->stream_of_data = new StreamOfDataFrom($this->fields, $this->headers);
+        BillingOf::New($this->db, $psp);
     }
 
     public function pay()
     {
         try {
-            $this->log_out->write();
-            $this->stream->send(
+            $this->log->write($this->stream_of_data); //логируем отправляемое
+            $this->stream->send( //отправляем запрос
                 $this->headers,
                 $this->fields
             );
-            $this->log_input->write();
-            $this->db->insert('payments_billing', [
-                'transaction_id' => $this->psp->transaction_id(),
-                'paid' => false,
-                'psp_transaction_id' => '',
-                'user_id' => $this->psp->card()->user_id(),
-                'amount' => $this->psp->card()->amount(),
-                'currency' => $this->psp->card()->currency()
-            ]);
+            $this->log->write($this->stream); //логируем ответ
         } catch (\Exception $e) {
 
         }
