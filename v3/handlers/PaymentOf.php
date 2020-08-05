@@ -23,7 +23,6 @@ use AnyPayments\v3\meedoo\Medoo;
  * 5. принимаем ответ и передаем этот ответ в конкретный обрабочик платежной системы
  * (там он этот ответ будет обрабатывать по своему)
  * 6. логируем ответ.
- *
  * @property IFromCommandOfPayment $psp
  * @property Medoo $db
  * @property array $db_connection
@@ -40,7 +39,8 @@ class PaymentOf implements IHandlerOfPayment
     private $headers;
     private $fields;
     private $stream;
-    private $log;
+    private $log_out;
+    private $log_input;
 
     public function __construct(IFromCommandOfPayment $psp, array $db_connection)
     {
@@ -54,35 +54,39 @@ class PaymentOf implements IHandlerOfPayment
             'password' => $db_connection['password']
         ]);
         $this->stream = new OutputStreamTo($psp->api_url());
-        $this->log = new LogStream($this->stream);
         $this->fields = new FieldsOf($psp->fields());
         $this->headers = new HeadersOf($psp->headers());
+        $this->log_out = LogStream::Output(
+            $this->db,
+            $this->fields,
+            $this->headers
+        );
+        $this->log_input = LogStream::Input(
+            $this->db,
+            $this->stream
+        );
     }
 
     public function pay()
     {
         try {
-            $resp = $this->stream->send(
+            $this->log_out->write();
+            $this->stream->send(
                 $this->headers,
                 $this->fields
-            )->read();
-            $this->add_to_billing();
+            );
+            $this->log_input->write();
+            $this->db->insert('payments_billing', [
+                'transaction_id' => $this->psp->transaction_id(),
+                'paid' => false,
+                'psp_transaction_id' => '',
+                'user_id' => $this->psp->card()->user_id(),
+                'amount' => $this->psp->card()->amount(),
+                'currency' => $this->psp->card()->currency()
+            ]);
         } catch (\Exception $e) {
 
         }
     }
 
-    private function add_to_billing()
-    {
-        $psp = $this->psp;
-        //отловить ошибку тут.
-        $this->db->insert('payments_billing', [
-            'transaction_id' => $psp->transaction_id(),
-            'paid' => false,
-            'psp_transaction_id' => '',
-            'user_id' => $psp->card()->user_id(),
-            'amount' => $psp->card()->amount(),
-            'currency' => $psp->card()->currency()
-        ]);
-    }
 }

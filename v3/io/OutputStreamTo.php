@@ -62,11 +62,24 @@ class OutputStreamTo implements IStream
      * @return bool|string
      * @throws \Exception
      */
-    public function read(): string
+    public function read_body(): string
     {
         if ($this->already_send) {
             return $this->response;
         }
         throw new \Exception('Request was not sent.');
+    }
+
+    /**
+     * читает заголовки ответа
+     * @return string
+     * @throws \Exception
+     */
+    public function read_headers(): string
+    {
+        if($this->already_send){
+            return ;
+        }
+        throw  new \Exception('Request was not sent.');
     }
 }

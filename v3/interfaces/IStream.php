@@ -19,5 +19,11 @@ interface IStream
      * @return string
      * @throws \Exception
     */
-    public function read(): string;
+    public function read_body(): string;
+
+    /**
+     * читает заголовки ответа
+     * @return string
+    */
+    public function read_headers(): string;
 }
