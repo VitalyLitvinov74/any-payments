@@ -78,7 +78,7 @@ class OutputStreamTo implements IStream
     public function read_headers(): string
     {
         if($this->already_send){
-            return ;
+            return '';
         }
         throw  new \Exception('Request was not sent.');
     }

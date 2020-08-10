@@ -29,6 +29,7 @@ class RoyalPayPayment extends AbstractCommandOfPayment implements IFromCommandOf
         parent::__construct($card_form);
         $this->secret_keys = $credential;
         $this->urls = $urls;
+        var_dump($card_form->amount());die;
     }
 
     /**

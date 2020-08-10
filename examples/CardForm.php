@@ -19,7 +19,7 @@ class CardForm implements ICardForm
     /** сумма которую нужно передать в psp в удобном для вас формате. */
     public function amount()
     {
-        return $this->post['amount'];
+        return floatval($this->post['amount']);
     }
 
     /** номер карты */
@@ -73,7 +73,7 @@ class CardForm implements ICardForm
     /** Валюта в которой производится операция*/
     public function currency()
     {
-        return 'RUB';
+        return strtoupper($this->post['currency']);
     }
 
     /** Город проживания пользователя*/

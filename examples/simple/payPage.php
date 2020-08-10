@@ -5,8 +5,8 @@ use AnyPayments\v3\psp\royalpay\RoyalPayPayment;
 use AnyPayments\examples\CardForm;
 use AnyPayments\examples\Credential;
 use AnyPayments\examples\Urls;
-use AnyPayments\v3\handlers\NotificationOf;
 use AnyPayments\v3\handlers\PaymentOf;
+
 
 /**
  * 1. скопируйте код ниже.
@@ -16,16 +16,17 @@ use AnyPayments\v3\handlers\PaymentOf;
 $config =
     [
         'db' => [
-            'db_host' => '', //require
-            'db_name' => '', //require
-            'username' => '', //require
+            'db_host' => 'localhost', //require
+            'db_name' => 'any_payments', //require
+            'username' => 'root', //require
             'password' => '', //require
             'db_type' => 'mysql', //require
         ]
     ];
+if($_POST): //если форма отправлена - то обрабатываем транзакцию
 $payment =
     new PaymentOf( //новый платеж
-        new RoyalPayPayment( //роялпэй
+        new RoyalPayPayment( //роялпэй. как обработчик платежа.
             new CardForm( //форма, обрабатывающая карту
                 $_POST
             ),
@@ -38,3 +39,17 @@ $payment =
         $config['db']
     );
 $payment->pay();
+else:
+?>
+<form method="POST">
+    <input name="user_id" type="text" hidden value="222">
+    <input name="amount"  type="text">
+    <select name="currency">
+        <option value="usd">usd</option>
+        <option value="eur">eur</option>
+        <option value="rub" selected>rub</option>
+    </select>
+    <input type="submit" value="Оплатить">
+</form>
+<?php
+endif;
