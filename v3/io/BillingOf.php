@@ -71,7 +71,7 @@ class BillingOf
         if (isset($data['transaction_id'])) {
             $this->transaction_id = $data['transaction_id'];
         }
-        if(isset($data['paid'])){
+        if(isset($data['paid'])){//
             $this->paid = $data['paid'];
         }
         if(isset($data['user_id'])){
