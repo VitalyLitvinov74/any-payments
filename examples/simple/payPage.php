@@ -1,7 +1,7 @@
 <?php
-
-use AnyPayemtns\v3\psp\royalpay\RoyalPayNotification;
-use AnyPayemtns\v3\psp\royalpay\RoyalPayPayment;
+include ('../../vendor/autoload.php');
+use AnyPayments\v3\psp\royalpay\RoyalPayNotification;
+use AnyPayments\v3\psp\royalpay\RoyalPayPayment;
 use AnyPayments\examples\CardForm;
 use AnyPayments\examples\Credential;
 use AnyPayments\examples\Urls;

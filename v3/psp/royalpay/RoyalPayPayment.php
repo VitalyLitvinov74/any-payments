@@ -1,13 +1,12 @@
 <?php
 
 
-namespace AnyPayemtns\v3\psp\royalpay;
+namespace AnyPayments\v3\psp\royalpay;
 
 
-use AnyPayemtns\v3\psp\AbstractCommandOfPayment;
+use AnyPayments\v3\psp\AbstractCommandOfPayment;
 use AnyPayments\examples\Urls;
 use AnyPayments\v3\interfaces\ICardForm;
-use AnyPayments\v3\interfaces\IConfig;
 use AnyPayments\v3\interfaces\ICredential;
 use AnyPayments\v3\interfaces\IFromCommandOfPayment;
 use AnyPayments\v3\interfaces\IUrl;

@@ -1,10 +1,10 @@
 <?php
 
 
-namespace AnyPayemtns\v3\psp\royalpay;
+namespace AnyPayments\v3\psp\royalpay;
 
 
-use AnyPayemtns\v3\psp\AbstractCommandOfNotification;
+use AnyPayments\v3\psp\AbstractCommandOfNotification;
 use AnyPayments\v3\interfaces\ICredential;
 use AnyPayments\v3\interfaces\IFromCommandOfNotification;
 

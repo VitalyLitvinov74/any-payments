@@ -1,7 +1,7 @@
 <?php
 
 
-namespace AnyPayemtns\v3\psp;
+namespace AnyPayments\v3\psp;
 
 
 use AnyPayments\v3\interfaces\IFromCommandOfNotification;
