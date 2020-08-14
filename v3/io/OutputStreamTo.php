@@ -39,6 +39,7 @@ class OutputStreamTo implements IStream
                 $fields->array()
             ));
         $this->response = curl_exec($curl);
+        var_dump($this->response);die;
         curl_close($curl);
         $this->already_send = true;
         return $this;

@@ -24,9 +24,11 @@ class FieldsOf implements IData
     {
         $fields = $this->fields;
         if (is_string($fields)){
-
+            return 'string';
+        }elseif (is_array($fields)){
+            return 'array';
         }
-        return 'json';
+        return 'undefined';
     }
 
     private function is_json(string $string):bool{
@@ -41,12 +43,19 @@ class FieldsOf implements IData
 
     }
 
-    private function is_array(){
-
-    }
-
     public function array(): array
     {
+        $fields = $this->fields;
+        if($this->data_type() == "string"){
+            if($this->is_json($fields)){
+                return json_decode($this->fields);
+            }
+            if($this->is_url($fields)){
 
+            }
+        }elseif ($this->data_type() == "array"){
+            return $fields;
+        }
+        return [];
     }
 }

@@ -24,7 +24,6 @@ class LogStream
 
     public function write(IStream $stream): void
     {
-        var_dump($stream->read_body());die;
         try {
             $response = $stream->read_body();
         } catch (\Exception $e) {
