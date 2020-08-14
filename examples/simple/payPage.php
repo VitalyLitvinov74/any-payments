@@ -12,6 +12,7 @@ include_once ('..\..\vendor\autoload.php');
  * 3. используйте.
  */
 include_once ('..\config.php'); //это нужно закоментировать (если вы не используете файл конфигурации).
+echo'<pre>';
 if($_POST):
     $payment =
         new PaymentOf( //новый платеж
@@ -23,7 +24,7 @@ if($_POST):
                                  'secret_key' => $config['psp']['public_key'],
                                  'auth' => $config['psp']['auth']
                 ]),
-                new Urls($_SERVER['REQUEST_URI']) //содержит информацию о том куда перенаправлять пользователя.
+                new Urls($_SERVER['HTTP_HOST']) //содержит информацию о том куда перенаправлять пользователя.
             ),
             $config['db']
         );
@@ -37,6 +38,7 @@ else:?>
         <option value="RUB" selected>RUB</option>
         <option value="EUR">EUR</option>
     </select>
+    <input value="1234" hidden name="user_id">
     <input type="submit" value="Оплатить">
 </form>
 

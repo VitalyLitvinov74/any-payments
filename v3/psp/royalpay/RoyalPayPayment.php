@@ -65,7 +65,7 @@ class RoyalPayPayment extends AbstractCommandOfPayment implements IFromCommandOf
             'payment_system' => "CardGate",
             'url' => [
                 'callback_url' => $this->urls->callback_url(),
-                'fail_url' => $this->urls->after_payment_url(),
+                'fail_url' => $this->urls->fail_url(),
                 'pending_url' => $this->urls->after_payment_url(),
                 'success_url' => $this->urls->success_url(),
             ]

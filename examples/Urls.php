@@ -20,24 +20,24 @@ class Urls implements IUrl
 
     public function callback_url(array $params = []): string
     {
-        return $this->domain . '/examples/simple/notificationPage.php';
+        return $this->domain . '/simple/notificationPage.php';
     }
 
     public function after_payment_url(array $params = []): string
     {
-        return $this->domain . '/examples/simple/successPage.php';
+        return $this->domain . '/simple/successPage.php';
     }
 
     public function success_url(array $params = []): string
     {
-        return $this->domain . '/examples/simple/successPage.php';
+        return $this->domain . '/simple/successPage.php';
     }
 
     public function fail_url(array $params = []): string
     {
         if (isset($params['message'])) {
-            return $this->domain . '/examples/simple/errorPage?message=' . $params['message'];
+            return $this->domain . '/simple/errorPage?message=' . $params['message'];
         }
-        return $this->domain . '/examples/simple/errorPage';
+        return $this->domain . '/simple/errorPage';
     }
 }

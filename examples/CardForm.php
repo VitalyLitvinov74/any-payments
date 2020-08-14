@@ -109,6 +109,10 @@ class CardForm implements ICardForm
     /**Возвращает id пользователя, который проводит оплату*/
     public function user_id(): int
     {
+        /**
+         * совсем не обязательно брать это значение из post.
+         * например, в yii2 это делается так: Yii::$app->user->id;
+         */
         return $this->post['user_id'];
     }
 
