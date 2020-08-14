@@ -23,6 +23,7 @@ $config =
             'db_type' => 'mysql', //require
         ]
     ];
+include_once ('..\config.php');
 $payment =
     new PaymentOf( //новый платеж
         new RoyalPayPayment( //роялпэй
@@ -30,8 +31,8 @@ $payment =
                 $_POST
             ),
             new Credential([ //данные авторизации для роялпэй.
-                             'secret_key' => 'your secret key',
-                             'auth' => 'your auth key'
+                             'secret_key' => $config['psp']['public_key'],
+                             'auth' => $config['psp']['auth']
             ]),
             new Urls($_SERVER['REQUEST_URI']) //содержит информацию о том куда перенаправлять пользователя.
         ),
