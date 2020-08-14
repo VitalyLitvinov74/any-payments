@@ -1,6 +1,6 @@
 <?php
 
-use AnyPayemtns\v3\psp\royalpay\RoyalPayNotification;
+use AnyPayments\v3\psp\royalpay\RoyalPayNotification;
 use AnyPayments\examples\Credential;
 use AnyPayments\v3\handlers\NotificationOf;
 /**
