@@ -5,7 +5,6 @@ namespace AnyPayments\v3\psp\royalpay;
 
 
 use AnyPayments\v3\psp\AbstractCommandOfPayment;
-use AnyPayments\examples\Urls;
 use AnyPayments\v3\interfaces\ICardForm;
 use AnyPayments\v3\interfaces\ICredential;
 use AnyPayments\v3\interfaces\IFromCommandOfPayment;
@@ -29,7 +28,6 @@ class RoyalPayPayment extends AbstractCommandOfPayment implements IFromCommandOf
         parent::__construct($card_form);
         $this->secret_keys = $credential;
         $this->urls = $urls;
-        var_dump($card_form->amount());die;
     }
 
     /**
@@ -67,7 +65,7 @@ class RoyalPayPayment extends AbstractCommandOfPayment implements IFromCommandOf
             'payment_system' => "CardGate",
             'url' => [
                 'callback_url' => $this->urls->callback_url(),
-                'fail_url' => $this->urls->after_payment_url(),
+                'fail_url' => $this->urls->fail_url(),
                 'pending_url' => $this->urls->after_payment_url(),
                 'success_url' => $this->urls->success_url(),
             ]

@@ -12,7 +12,7 @@ use AnyPayments\v3\interfaces\IFromCommandOfPayment;
 */
 abstract class AbstractCommandOfPayment implements IFromCommandOfPayment
 {
-    private $card;
+    protected $card;
 
     /**
      * Принимает на вход форму карты.

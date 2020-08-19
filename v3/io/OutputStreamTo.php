@@ -39,6 +39,7 @@ class OutputStreamTo implements IStream
                 $fields->array()
             ));
         $this->response = curl_exec($curl);
+        var_dump($this->response);die;
         curl_close($curl);
         $this->already_send = true;
         return $this;
@@ -78,7 +79,7 @@ class OutputStreamTo implements IStream
     public function read_headers(): string
     {
         if($this->already_send){
-            return '';
+            return '';//переписать.
         }
         throw  new \Exception('Request was not sent.');
     }

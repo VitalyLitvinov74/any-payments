@@ -69,6 +69,7 @@ class PaymentOf implements IHandlerOfPayment
     {
         try {
             $this->log->write($this->stream_of_data); //логируем отправляемое
+            var_dump('hello');die;
             $this->stream->send( //отправляем запрос
                 $this->headers,
                 $this->fields
