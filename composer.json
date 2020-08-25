@@ -1,0 +1,29 @@
+{
+  "name": "vitaly/any-payments",
+  "type": "library",
+  "description": "Using this library you can connect any payment system",
+  "keywords": ["payment", "royalpay"],
+  "authors": [
+    {
+      "name": "Vitaly Litvinov",
+      "email": "cheltend@mail.ru",
+      "role": "Developer"
+    }
+  ],
+  "require": {
+    "php": ">=7.2",
+    "ext-json": "*",
+    "ext-curl": "*",
+    "ext-libxml": "*",
+    "ext-simplexml": "*",
+    "ext-pdo": "*",
+    "ext-dom": "*",
+    "ext-mbstring": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "AnyPayments\\v3\\": "v3",
+      "AnyPayments\\examples\\": "examples"
+    }
+  }
+}
