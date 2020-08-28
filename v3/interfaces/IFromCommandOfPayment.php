@@ -40,7 +40,7 @@ interface IFromCommandOfPayment
     public function transaction_id():string;
 
     /**
-     * Возвращает данные формы для записи в бд.
+     * Возвращает данные формы
      */
     public function card(): ICardForm;
 }
