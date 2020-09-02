@@ -20,7 +20,7 @@ class HeadersOf implements IData
         $this->header = $header;
     }
 
-    public function array(): array
+    public function content(): array
     {
         $arr = [];
         foreach ($this->header as $header => $value) {

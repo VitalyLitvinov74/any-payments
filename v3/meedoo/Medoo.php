@@ -14,6 +14,7 @@ use PDO;
 use Exception;
 use PDOException;
 use InvalidArgumentException;
+use Symfony\Component\VarDumper\VarDumper;
 
 class Raw {
 	public $map;
@@ -932,7 +933,7 @@ class Medoo
 				}
 				elseif ($raw = $this->buildRaw($ORDER, $map))
 				{
-					$where_clause .= ' ORDER BY ' . $raw;	
+					$where_clause .= ' ORDER BY ' . $raw;
 				}
 				else
 				{
@@ -950,7 +951,7 @@ class Medoo
 					{
 						$LIMIT = [0, $LIMIT];
 					}
-					
+
 					if (
 						is_array($LIMIT) &&
 						is_numeric($LIMIT[ 0 ]) &&
@@ -1220,7 +1221,7 @@ class Medoo
 			else
 			{
 				$current_stack = [];
-				
+
 				$this->dataMap($data, $columns, $column_map, $current_stack, false, $result);
 
 				$result[] = $current_stack;

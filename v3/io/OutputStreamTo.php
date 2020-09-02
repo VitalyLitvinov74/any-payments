@@ -6,6 +6,7 @@ namespace AnyPayments\v3\io;
 
 use AnyPayments\v3\interfaces\IData;
 use AnyPayments\v3\interfaces\IStream;
+use Symfony\Component\VarDumper\VarDumper;
 
 /**
  * @property bool $already_send - указывает был ли отправлен запрос.
@@ -30,22 +31,30 @@ class OutputStreamTo implements IStream
         if ($this->already_send){
             return $this;
         }
-
         $curl = curl_init();
         curl_setopt_array(
             $curl,
             $this->options(
-                $header->array(),
-                $fields->array()
+                $header->content(),
+                $fields->content()
             ));
         $this->response = curl_exec($curl);
-        var_dump($this->response);die;
+        VarDumper::dump($this->response);die;
         curl_close($curl);
         $this->already_send = true;
         return $this;
     }
 
-    private function options(array $header, array $fields): array
+    /**
+     * @param array $headers - массив заголовков в формате
+     * [
+     *   'Content-type: application/xml',
+     *   'Authorization: gfhjui'
+     * ]
+     * @param string $fields - сконвертированные поля json|xml|url
+     * @return array
+     */
+    private function options(array $header, string $fields): array
     {
         return [
             CURLOPT_URL => $this->url,

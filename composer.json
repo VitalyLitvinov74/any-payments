@@ -22,8 +22,7 @@
   },
   "autoload": {
     "psr-4": {
-      "AnyPayments\\v3\\": "v3",
-      "AnyPayments\\examples\\": "examples"
+      "AnyPayments\\v3\\": "v3"
     }
   }
 }

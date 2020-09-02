@@ -14,6 +14,7 @@ use AnyPayments\v3\io\LogStream;
 use AnyPayments\v3\io\OutputStreamTo;
 use AnyPayments\v3\io\StreamOfDataFrom;
 use AnyPayments\v3\meedoo\Medoo;
+use Symfony\Component\VarDumper\VarDumper;
 
 /**
  * Отправляет/принимает запросы в платежную систему
@@ -58,7 +59,7 @@ class PaymentOf implements IHandlerOfPayment
             'password' => $db_connection['password']
         ]);
         $this->stream = new OutputStreamTo($psp->api_url()); //поток входных данных.
-        $this->fields = new FieldsOf($psp->fields());
+        $this->fields = new FieldsOf($psp->fields(), $psp->output_fields_type());
         $this->headers = new HeadersOf($psp->headers());
         $this->log = new LogStream($this->db);
         $this->stream_of_data = new StreamOfDataFrom($this->fields, $this->headers);
@@ -74,6 +75,7 @@ class PaymentOf implements IHandlerOfPayment
                 $this->fields
             );
             $this->log->write($this->stream); //логируем ответ
+            $this->psp->redirect($this->stream->read_body());
         } catch (\Exception $e) {
 
         }
@@ -81,6 +83,10 @@ class PaymentOf implements IHandlerOfPayment
 
     public function psp(): IFromCommandOfPayment{
         return $this->psp;
+    }
+
+    public function stream(): OutputStreamTo{
+        return $this->stream;
     }
 
 }

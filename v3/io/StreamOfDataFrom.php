@@ -7,6 +7,7 @@ namespace AnyPayments\v3\io;
 use AnyPayments\v3\interfaces\IData;
 use AnyPayments\v3\interfaces\IStream;
 /**
+ * Поток данных
  * @property IData $fields
  * @property IData $headers
 */
@@ -39,7 +40,7 @@ class StreamOfDataFrom implements IStream
      */
     public function read_body(): string
     {
-        return json_encode($this->fields->array());
+        return json_encode($this->fields->content());
     }
 
     /**
@@ -48,6 +49,6 @@ class StreamOfDataFrom implements IStream
      */
     public function read_headers(): string
     {
-        return json_encode($this->headers->array());
+        return json_encode($this->headers->content());
     }
 }

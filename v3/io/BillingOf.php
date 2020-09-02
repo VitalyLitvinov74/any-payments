@@ -43,7 +43,7 @@ class BillingOf
     public static function New(Medoo $db, IFromCommandOfPayment $psp): self
     {
         $db->insert(
-            'payments_billing',
+            'any_payments_billing',
             [
                 'transaction_id' => $psp->transaction_id(),
                 'paid' => false,
