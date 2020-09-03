@@ -31,16 +31,19 @@ class OutputStreamTo implements IStream
         if ($this->already_send){
             return $this;
         }
-        $curl = curl_init();
-        curl_setopt_array(
-            $curl,
-            $this->options(
-                $header->content(),
-                $fields->content()
-            ));
-        $this->response = curl_exec($curl);
-        VarDumper::dump($this->response);die;
-        curl_close($curl);
+        if($this->url){
+            $curl = curl_init();
+            curl_setopt_array(
+                $curl,
+                $this->options(
+                    $header->content(),
+                    $fields->content()
+                ));
+            $this->response = curl_exec($curl);
+//            curl_close($curl);
+        }else{
+            $this->response = '';
+        }
         $this->already_send = true;
         return $this;
     }
@@ -58,7 +61,7 @@ class OutputStreamTo implements IStream
     {
         return [
             CURLOPT_URL => $this->url,
-            CURLOPT_HEADER => true,
+            CURLOPT_HEADER => false,
             CURLOPT_POST => 1,
             CURLOPT_SSL_VERIFYPEER => true,
             CURLINFO_HEADER_OUT => true,
@@ -77,7 +80,7 @@ class OutputStreamTo implements IStream
         if ($this->already_send) {
             return $this->response;
         }
-        throw new \Exception('Request was not sent.');
+        return 'Request was not sent.';
     }
 
     /**
@@ -90,6 +93,6 @@ class OutputStreamTo implements IStream
         if($this->already_send){
             return '';//переписать.
         }
-        throw  new \Exception('Request was not sent.');
+        return "Request was not sent.";
     }
 }

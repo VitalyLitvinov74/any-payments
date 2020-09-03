@@ -61,7 +61,7 @@ class PaymentOf implements IHandlerOfPayment
         $this->stream = new OutputStreamTo($psp->api_url()); //поток входных данных.
         $this->fields = new FieldsOf($psp->fields(), $psp->output_fields_type());
         $this->headers = new HeadersOf($psp->headers());
-        $this->log = new LogStream($this->db);
+        $this->log = new LogStream($this->db, $this->psp->card()->scenario());
         $this->stream_of_data = new StreamOfDataFrom($this->fields, $this->headers);
         BillingOf::New($this->db, $psp);
     }
@@ -69,16 +69,22 @@ class PaymentOf implements IHandlerOfPayment
     public function pay()
     {
         try {
-            $this->log->write($this->stream_of_data); //логируем отправляемое
-            $this->stream->send( //отправляем запрос
-                $this->headers,
-                $this->fields
-            );
-            $this->log->write($this->stream); //логируем ответ
+            $this->log->write($this->stream_of_data, false); //логируем отправляемое
+            $this->log->write($this->stream, true); //логируем ответ
+            if ($this->stream()->read_body() == 'Request was not sent.'){
+                $this->send_pre_request();
+            }
             $this->psp->redirect($this->stream->read_body());
         } catch (\Exception $e) {
 
         }
+    }
+
+    public function send_pre_request(): void{
+        $this->stream->send( //отправляем запрос
+            $this->headers,
+            $this->fields
+        );
     }
 
     public function psp(): IFromCommandOfPayment{
