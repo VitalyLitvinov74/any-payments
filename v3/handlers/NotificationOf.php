@@ -7,23 +7,30 @@ namespace AnyPayments\v3\handlers;
 use AnyPayments\v3\interfaces\IFromCommandOfNotification;
 use AnyPayments\v3\interfaces\IHandlerOfNotification;
 use AnyPayments\v3\io\InputStreamBy;
+use AnyPayments\v3\io\StringToArray;
 use AnyPayments\v3\meedoo\Medoo;
+use Symfony\Component\VarDumper\VarDumper;
 
 /**@property  IFromCommandOfNotification $psp
  * @property array $db_connection
  * @property Medoo $db
- * @property InputStreamBy $request
+ * @property InputStreamBy $stream
  * @property string $answer
  * @property bool $has_error
+ * @property StringToArray $converter
  */
 class NotificationOf implements IHandlerOfNotification
 {
     private $psp;
     private $db;
-    private $request;
+    private $stream;
     private $db_connection;
     private $answer;
     private $has_error;
+    private $converter;
+    private $fields;
+    private $headers;
+
 
     public function __construct(IFromCommandOfNotification $psp, array $db_connection)
     {
@@ -36,8 +43,9 @@ class NotificationOf implements IHandlerOfNotification
             'password' => $db_connection['password']
         ]);
         $this->psp = $psp;
+        $this->stream = new InputStreamBy();
+        $this->converter = new StringToArray($this->stream->read_body());
         $this->log($this->headers(), $this->fields());
-        $this->request = new InputStreamBy();
         if ($psp->transaction_id($this->fields())) {
             $this->enjoy();
         }
@@ -92,18 +100,28 @@ class NotificationOf implements IHandlerOfNotification
     private function log($header, $response)
     {
         $this->db->insert('any_payments_log', [
+            'psp_class'=> 'Notification',
+            'input'=>true,
+            'output'=>false,
             'headers' => json_encode($header),
             'fields' => json_encode($response),
         ]);
     }
 
-    private function fields(): array
+    public function fields(): array
     {
-
+        if (is_null($this->fields)) {
+            $this->fields = $this->converter->content();
+        }
+        return $this->fields;
     }
 
-    private function headers(): array{
-
+    public function headers(): array
+    {
+        if (is_null($this->headers)) {
+            $this->headers = $this->stream->read_headers();
+        }
+        return $this->headers;
     }
 
 

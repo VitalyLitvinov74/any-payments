@@ -47,8 +47,8 @@ class StreamOfDataFrom implements IStream
      * читает заголовки ответа
      * @return string
      */
-    public function read_headers(): string
+    public function read_headers(): array
     {
-        return json_encode($this->headers->content());
+        return $this->headers->content();
     }
 }

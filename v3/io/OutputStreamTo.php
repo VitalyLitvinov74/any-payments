@@ -88,11 +88,11 @@ class OutputStreamTo implements IStream
      * @return string
      * @throws \Exception
      */
-    public function read_headers(): string
+    public function read_headers(): array
     {
         if($this->already_send){
-            return '';//переписать.
+            return [];//переписать.
         }
-        return "Request was not sent.";
+        return ["Request was not sent."];
     }
 }

@@ -3,32 +3,29 @@
 
 namespace AnyPayments\v3\io;
 
+use AnyPayments\v3\interfaces\IData;
+use AnyPayments\v3\interfaces\IStream;
+use Symfony\Component\VarDumper\VarDumper;
 
-class InputStreamBy
+/**
+ * @property string $body;
+*/
+class InputStreamBy implements IStream
 {
-    private $jsonBody;
+    private $body;
     private $headers;
 
     function __construct()
     {
         if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-            $this->jsonBody = $_SERVER['QUERY_STRING'];
+            $this->body = $_SERVER['QUERY_STRING'];
         } else if ($_SERVER['REQUEST_METHOD'] == "POST") {
-            $this->jsonBody = file_get_contents('php://input');
+            $this->body = file_get_contents('php://input'); //urlencoded
+            if($this->body == ""){ //form-data
+                $this->body = json_encode($_POST);
+            }
         }
-    }
 
-    public function response(): string
-    {
-        return $this->jsonBody;
-    }
-
-    public function headers(): array
-    {
-        if (!$this->headers or is_string($this->headers)) {
-            return $this->get_all_headers();
-        }
-        return $this->headers;
     }
 
     private function get_all_headers()
@@ -40,5 +37,39 @@ class InputStreamBy
             }
         }
         return $headers;
+    }
+
+    /**
+     * отправляет содержимое на сервер платежной системы
+     * @param IData $header - заголовки
+     * @param IData $fields - поля
+     * @return IStream
+     */
+    public function send(IData $header, IData $fields): IStream
+    {
+        echo $fields->content();
+        return $this;
+    }
+
+    /**
+     * читает ответ от платежной системы.
+     * @return string
+     * @throws \Exception
+     */
+    public function read_body(): string
+    {
+        return $this->body;
+    }
+
+    /**
+     * читает заголовки ответа
+     * @return string
+     */
+    public function read_headers(): array
+    {
+        if (!$this->headers or is_string($this->headers)) {
+            return $this->get_all_headers();
+        }
+        return $this->headers;
     }
 }

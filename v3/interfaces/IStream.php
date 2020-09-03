@@ -25,5 +25,5 @@ interface IStream
      * читает заголовки ответа
      * @return string
     */
-    public function read_headers(): string;
+    public function read_headers(): array;
 }
